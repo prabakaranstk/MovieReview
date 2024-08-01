@@ -33,4 +33,12 @@ export class MovieService {
     return this.AllMovies?.find(item=> item.id == movieId);
   }
 
+  updateMovieRating(selectedIndex:number, movieId:string){
+    this.AllMovies?.find(item=> {
+      if(item.id == movieId){
+        item.rating = String(selectedIndex);
+      }
+    })
+  }
+
 }

@@ -29,6 +29,9 @@ export class AppComponent {
     this.movieService.searchMovies(this.searchText);
   }
 
+  onChooseMovieName(searchText:string){
+    this.movieService.searchMovies(searchText);
+  }
   
 
 }

@@ -11,6 +11,8 @@ import { Movie } from '../home/movie.model';
 export class MovieDetailComponent {
   movieId?:string | null;
   selectedMovie?:Movie | undefined;
+  sliderMax?:number = 10;
+  selectedRating!:number;
 
   constructor(private route:ActivatedRoute, private movieService:MovieService){
 
@@ -19,9 +21,12 @@ export class MovieDetailComponent {
   ngOnInit(){
     this.movieId = this.route.snapshot.paramMap.get('id');
     this.selectedMovie = this.movieService.getMovieById(this.movieId);
-    console.log("mm--",this.selectedMovie);
   }
 
+  updateSlider(selectedIndex:number, movieId:string){
+    this.selectedRating = selectedIndex;
+    this.movieService.updateMovieRating(selectedIndex+1,movieId);
+  }
 
 
 

@@ -14,12 +14,9 @@
             Movies Names
           </a>
           <ul class="dropdown-menu">
-            <!-- <li><a class="dropdown-item" routerLink="/movie">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li> -->
-            @for(movie of movies; track  movie.id){
-              <li><a class="dropdown-item" href="#">{{movie.movie}}</a></li>
+            <li><a class="dropdown-item" (click)="onChooseMovieName('')">All Movies</a></li>
+             @for(movie of movies; track  movie.id){
+              <li><a class="dropdown-item" (click)="onChooseMovieName(movie.movie)">{{movie.movie}}</a></li>
             }
           </ul>
         </li>
@@ -27,7 +24,6 @@
       <form class="d-flex" role="search">
         <input class="form-control me-2" name="Search" type="search" [(ngModel)]="searchText" (input)="onChangeSearchText()" 
           placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
     </div>
   </div>

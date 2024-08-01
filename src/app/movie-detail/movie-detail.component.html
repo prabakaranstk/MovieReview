@@ -1,0 +1,16 @@
+<div class="container-fluid">
+    <div class="row mt-5">
+        <div class="col-md-3 offset-md-4">
+            @if(selectedMovie){
+                <div class="card" >
+                    <img src ="images/shawshank.jpg" class="card-img-top" [id]="selectedMovie.id" [alt]="selectedMovie.movie"/>
+                    <div class="card-body">
+                        <h5 class="card-title">{{selectedMovie.movie}}</h5>
+                        <p class="card-text"><span>IMDB Rating:</span>{{selectedMovie.rating}}</p>
+                        <p class="card-text"><span>Your Rating:</span><span style="cursor: pointer;">★</span><span style="cursor: pointer;">☆</span></p>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

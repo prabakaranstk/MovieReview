@@ -1,22 +1,30 @@
 <div class="container-fluid">
+    @if(selectedMovie){      
     <div class="row mt-5">
-        <div class="col-md-3 offset-md-4">
-            @if(selectedMovie){
-                <app-card>
-                    <img card-title src ="images/shawshank.jpg" class="card-img-top" [id]="selectedMovie.id" [alt]="selectedMovie.movie"/>
-                    <h5 class="card-title">{{selectedMovie.movie}}</h5>
-                    <p class="card-text"><span>IMDB Rating:</span>{{selectedMovie.rating}}</p>
-                    <p class="card-text"><span>Your Rating:</span>
-                        @for(number of [].constructor(sliderMax); track $index){
-                            @if( selectedRating >= $index ){ 
-                                <span (click)="updateSlider($index,selectedMovie.id)" style="cursor: pointer;">★</span>
-                            } @else {
-                                <span (click)="updateSlider($index,selectedMovie.id)" style="cursor: pointer;">☆</span>
-                            }
-                        }
-                    </p>
-                </app-card>
-            }
+        <div class="col-md-3 offset-md-5">
+            <h5 class="card-title">{{selectedMovie.movie}}</h5>
         </div>
     </div>
+    <div class="row mt-5">             
+            <div class="col-md-3 offset-md-3">
+                <app-card>
+                    <img card-title [src] ="getImage(selectedMovie.id)" class="card-img-top" [id]="selectedMovie.id" [alt]="selectedMovie.movie"/>               
+                </app-card>  
+            </div>
+            <div class="col-md-3">
+                
+                <p class="card-text"><span>IMDB Rating: </span>{{selectedMovie.rating}}</p>
+                <p class="card-text"><span>Your Rating: </span>
+                    @for(number of [].constructor(sliderMax); track $index){
+                        @if( selectedRating >= $index ){ 
+                            <span (click)="updateSlider($index,selectedMovie.id)" style="cursor: pointer;">★</span>
+                        } @else {
+                            <span (click)="updateSlider($index,selectedMovie.id)" style="cursor: pointer;">☆</span>
+                        }
+                    }
+                </p>
+                <p class="card-text"><span>IMDB url: </span>{{selectedMovie.imdb_url}}</p>         
+            </div>      
+    </div>
+    }
 </div>

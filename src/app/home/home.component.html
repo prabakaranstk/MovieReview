@@ -3,9 +3,9 @@
     @for(movie of movies(); track  movie.id)  {
         <div class = "col">
            <app-card>
-                <img card-title src ="images/shawshank.jpg" (click) ="navigateMoviePage(movie.id)" class="card-img-top" [id]="movie.id" [alt]="movie.movie"/>
-                <h5 class="card-title">{{movie.movie}}</h5>
-                <p class="card-text">{{movie.rating}}</p>
+                <img card-title [src] ="getImage(movie.id)" (click) ="navigateMoviePage(movie.id)" class="cursor-pointer card-img-top" [alt]="movie.movie"/>
+                <h5 class="card-title cursor-pointer">{{movie.movie}}</h5>
+                <p class="card-text"><span>IMDB Rating: </span>{{movie.rating}}</p>
             </app-card>
         </div>
     }

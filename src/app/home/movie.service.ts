@@ -51,4 +51,9 @@ export class MovieService {
     }
   }
 
+  getImage(id:string){
+    const numbers = ["images/lotr_return_king.jpg","images/shawshank.jpg", "images/godfather.jpg", "images/dark_knight.jpg"];
+    return numbers[Number(id)%4];
+  }
+
 }

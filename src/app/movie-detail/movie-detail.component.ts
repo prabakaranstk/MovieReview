@@ -16,9 +16,10 @@ export class MovieDetailComponent {
   selectedMovie?:Movie | undefined;
   sliderMax?:number = 10;
   selectedRating!:number;
+  getImage!:Function;
 
   constructor(private route:ActivatedRoute, private movieService:MovieService){
-
+    this.getImage = this.movieService.getImage;
   }
 
   ngOnInit(){
@@ -31,6 +32,6 @@ export class MovieDetailComponent {
     this.movieService.updateMovieRating(selectedIndex+1,movieId);
   }
 
-
+  
 
 }

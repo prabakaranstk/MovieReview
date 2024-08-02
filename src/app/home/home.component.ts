@@ -16,15 +16,10 @@ export class HomeComponent {
   private movieService = inject(MovieService);
   private router = inject(Router)
   movies =  this.movieService.filterdMovies.asReadonly();
+  getImage = this.movieService.getImage;
 
   navigateMoviePage(movieId:string){
     this.router.navigate(['movie',{ id: movieId }]);
-  }
-
-  getImage(){
-    const numbers = ["images/shawshank.jpg", "images/godfather.jpg", "images/dark_knight.jpg", "images/pulp_fiction.jpg"];
-    const randomIndex = Math.floor(Math.random() * numbers.length);
-    return numbers[randomIndex];
   }
 
 }

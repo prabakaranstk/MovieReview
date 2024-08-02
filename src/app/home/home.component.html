@@ -2,14 +2,19 @@
     <div class="row mt-5 row-cols-1 row-cols-sm-2 row-cols-md-4 row-gap-3 ">
     @for(movie of movies(); track  movie.id)  {
         <div class = "col">
-            <div class="card w-75" >
-                <img src ="images/shawshank.jpg" (click) ="navigateMoviePage(movie.id)" class="card-img-top" [id]="movie.id" [alt]="movie.movie"/>
-                <div class="card-body">
-                    <h5 class="card-title">{{movie.movie}}</h5>
-                    <p class="card-text">{{movie.rating}}</p>
-                </div>
+           <app-card>
+                <img card-title src ="images/shawshank.jpg" (click) ="navigateMoviePage(movie.id)" class="card-img-top" [id]="movie.id" [alt]="movie.movie"/>
+                <h5 class="card-title">{{movie.movie}}</h5>
+                <p class="card-text">{{movie.rating}}</p>
+            </app-card>
+        </div>
+    }
+    @empty {
+        <div class="col-md-3 offset-md-4">
+            <div class="alert alert-primary" role="alert">
+            No movie found
             </div>
         </div>
-        }
+    }
     </div>       
 </div>

@@ -1,30 +1,22 @@
 import { Component, EventEmitter, Output, inject } from '@angular/core';
 
 import { AsyncPipe } from '@angular/common';
-import { Movie } from './movie.model';
 import { MovieService } from './movie.service';
 import { Router } from '@angular/router';
+import { CardComponent } from "../shared/card/card.component";
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [AsyncPipe],
+  imports: [AsyncPipe, CardComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
-  //movies!: Movie[];
   private movieService = inject(MovieService);
-  movies =  this.movieService.movies.asReadonly();
+  private router = inject(Router)
+  movies =  this.movieService.filterdMovies.asReadonly();
 
-  constructor(private router: Router){
-
-  }
- 
-  ngOnInit(){
-    
-  }
-  
   navigateMoviePage(movieId:string){
     this.router.navigate(['movie',{ id: movieId }]);
   }

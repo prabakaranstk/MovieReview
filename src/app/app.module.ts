@@ -5,13 +5,16 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { HeaderComponent } from './header/header.component';
+import { CardComponent } from './shared/card/card.component';
 
 @NgModule({
     imports: [
       BrowserModule,
       FormsModule,
       AppRoutingModule,
-      CommonModule
+      CommonModule,
+      CardComponent
     ],
     providers: [
       provideHttpClient(
@@ -19,7 +22,8 @@ import { CommonModule } from '@angular/common';
       ),
     ],
     declarations: [
-      AppComponent
+      AppComponent,
+      HeaderComponent
     ],
     bootstrap: [ AppComponent ]
   })

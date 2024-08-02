@@ -2,9 +2,12 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MovieService } from '../home/movie.service';
 import { Movie } from '../home/movie.model';
+import { CardComponent } from '../shared/card/card.component';
 
 @Component({
   selector: 'app-movie-detail',
+  standalone: true,
+  imports: [CardComponent],
   templateUrl: './movie-detail.component.html',
   styleUrl: './movie-detail.component.css'
 })

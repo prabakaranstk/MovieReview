@@ -10,9 +10,7 @@ import { Router } from '@angular/router';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'MovieReview';
-  movies!:Movie[];
-  searchText!:string;
+ 
 
   constructor(private movieService: MovieService,  private router: Router) {
     
@@ -20,18 +18,8 @@ export class AppComponent {
 
   ngOnInit(): void {
     this.movieService.fetchMovies().subscribe(movies => {
-      this.movies = movies;
       this.movieService.setMovies(movies);
     });
   }
-
-  onChangeSearchText(){
-    this.movieService.searchMovies(this.searchText);
-  }
-
-  onChooseMovieName(searchText:string){
-    this.movieService.searchMovies(searchText);
-  }
-  
 
 }

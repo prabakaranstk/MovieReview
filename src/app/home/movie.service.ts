@@ -5,9 +5,8 @@ import { HttpClient } from "@angular/common/http";
 
 @Injectable({ providedIn: 'root' })
 export class MovieService {
-  movies = signal<Movie[] | undefined>(undefined);
-  AllMovies! :Movie[]| undefined;
-  filterdMovies! :Movie[]| undefined;
+  filterdMovies = signal<Movie[] | undefined>(undefined);
+  AllMovies = signal<Movie[] | undefined>(undefined);
 
   constructor(private http: HttpClient) { }
 
@@ -16,29 +15,40 @@ export class MovieService {
   }
 
   setMovies(movies:Movie[]) {
-   this.AllMovies = movies;
-   this.movies.set(movies);
+   this.AllMovies.set(movies);
+   this.filterdMovies.set(movies);
   }
 
   searchMovies(searchText:string){
     if(searchText){
-      this.filterdMovies = this.AllMovies?.filter(item => item.movie.toLowerCase().includes(searchText.toLowerCase()));
-      this.movies.set(this.filterdMovies);
+      const filterdMovies = this.AllMovies()?.filter(item => item.movie.toLowerCase().includes(searchText.toLowerCase()));
+      this.filterdMovies.set(filterdMovies);
     }else{
-      this.movies.set(this.AllMovies);
+      this.filterdMovies.set(this.AllMovies());
     }
   }
 
   getMovieById(movieId:string | null){
-    return this.AllMovies?.find(item=> item.id == movieId);
+    return this.AllMovies()?.find(item=> item.id == movieId);
   }
 
   updateMovieRating(selectedIndex:number, movieId:string){
-    this.AllMovies?.find(item=> {
+    this.AllMovies()?.find(item=> {
       if(item.id == movieId){
         item.rating = String(selectedIndex);
       }
     })
+  }
+
+  getSelectedMovie(movieId:string | null){
+    if(movieId){
+      const selectedMovie = this.AllMovies()?.find(item=> item.id == movieId);
+      if(selectedMovie){
+        this.filterdMovies.set([selectedMovie]);
+      }
+    } else {
+      this.filterdMovies.set(this.AllMovies());
+    }
   }
 
 }

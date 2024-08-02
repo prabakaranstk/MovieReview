@@ -2,22 +2,20 @@
     <div class="row mt-5">
         <div class="col-md-3 offset-md-4">
             @if(selectedMovie){
-                <div class="card" >
-                    <img src ="images/shawshank.jpg" class="card-img-top" [id]="selectedMovie.id" [alt]="selectedMovie.movie"/>
-                    <div class="card-body">
-                        <h5 class="card-title">{{selectedMovie.movie}}</h5>
-                        <p class="card-text"><span>IMDB Rating:</span>{{selectedMovie.rating}}</p>
-                        <p class="card-text"><span>Your Rating:</span>
-                            @for(number of [].constructor(sliderMax); track $index){
-                                @if( selectedRating >= $index ){ 
-                                    <span (click)="updateSlider($index,selectedMovie.id)" style="cursor: pointer;">★</span>
-                                } @else {
-                                    <span (click)="updateSlider($index,selectedMovie.id)" style="cursor: pointer;">☆</span>
-                                }
+                <app-card>
+                    <img card-title src ="images/shawshank.jpg" class="card-img-top" [id]="selectedMovie.id" [alt]="selectedMovie.movie"/>
+                    <h5 class="card-title">{{selectedMovie.movie}}</h5>
+                    <p class="card-text"><span>IMDB Rating:</span>{{selectedMovie.rating}}</p>
+                    <p class="card-text"><span>Your Rating:</span>
+                        @for(number of [].constructor(sliderMax); track $index){
+                            @if( selectedRating >= $index ){ 
+                                <span (click)="updateSlider($index,selectedMovie.id)" style="cursor: pointer;">★</span>
+                            } @else {
+                                <span (click)="updateSlider($index,selectedMovie.id)" style="cursor: pointer;">☆</span>
                             }
-                        </p>
-                    </div>
-                </div>
+                        }
+                    </p>
+                </app-card>
             }
         </div>
     </div>

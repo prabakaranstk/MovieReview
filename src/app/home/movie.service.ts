@@ -1,5 +1,5 @@
 import { Injectable, signal } from "@angular/core";
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Movie } from "./movie.model";
 import { HttpClient } from "@angular/common/http";
 

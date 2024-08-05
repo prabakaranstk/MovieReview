@@ -1,8 +1,5 @@
-import { Component, effect, signal } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Movie } from './home/movie.model';
+import { Component } from '@angular/core';
 import { MovieService } from './home/movie.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +9,7 @@ import { Router } from '@angular/router';
 export class AppComponent {
  
 
-  constructor(private movieService: MovieService,  private router: Router) {
+  constructor(private movieService: MovieService) {
     
   }
 

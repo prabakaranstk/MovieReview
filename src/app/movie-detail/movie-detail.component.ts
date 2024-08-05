@@ -6,8 +6,6 @@ import { CardComponent } from '../shared/card/card.component';
 
 @Component({
   selector: 'app-movie-detail',
-  standalone: true,
-  imports: [CardComponent],
   templateUrl: './movie-detail.component.html',
   styleUrl: './movie-detail.component.css'
 })

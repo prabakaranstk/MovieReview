@@ -1,10 +1,33 @@
 import { TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { MovieService } from './home/movie.service';
+import { HeaderComponent } from './header/header.component';
+import { signal } from '@angular/core';
+import { Movie } from './home/movie.model';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+
+@Component({
+  selector: 'router-outlet',
+  template: ''
+})
+export class MockRouteComponent {
+}
 
 describe('AppComponent', () => {
+  const movieServiceSpy = jasmine.createSpyObj('MovieService', ['getImage']);
+  class mockMovieService {
+    AllMovies = signal<Movie[] | undefined>(undefined);
+    getImage(){
+      return {};
+    }
+    getMovieById(){
+      return [];
+    }
+  }
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AppComponent],
+      declarations: [AppComponent, HeaderComponent, MockRouteComponent ],
+      providers: [{provide: MovieService, useClass: mockMovieService}],
     }).compileComponents();
   });
 
@@ -14,16 +37,5 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have the 'MovieReview' title`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('MovieReview');
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, MovieReview');
-  });
+  
 });

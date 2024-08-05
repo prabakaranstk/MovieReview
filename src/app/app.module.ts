@@ -7,6 +7,8 @@ import { provideHttpClient, withFetch } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
 import { CardComponent } from './shared/card/card.component';
+import { HomeComponent } from './home/home.component';
+import { MovieDetailComponent } from './movie-detail/movie-detail.component';
 
 @NgModule({
     imports: [
@@ -14,7 +16,6 @@ import { CardComponent } from './shared/card/card.component';
       FormsModule,
       AppRoutingModule,
       CommonModule,
-      CardComponent
     ],
     providers: [
       provideHttpClient(
@@ -23,7 +24,10 @@ import { CardComponent } from './shared/card/card.component';
     ],
     declarations: [
       AppComponent,
-      HeaderComponent
+      HeaderComponent,
+      HomeComponent,
+      MovieDetailComponent,
+      CardComponent
     ],
     bootstrap: [ AppComponent ]
   })

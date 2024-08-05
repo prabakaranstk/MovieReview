@@ -1,6 +1,5 @@
 import { Component, inject } from '@angular/core';
 import { MovieService } from '../home/movie.service';
-import { Movie } from '../home/movie.model';
 
 @Component({
   selector: 'app-header',

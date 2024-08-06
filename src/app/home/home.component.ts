@@ -1,9 +1,6 @@
 import { Component, inject } from '@angular/core';
-
-import { AsyncPipe } from '@angular/common';
 import { MovieService } from './movie.service';
 import { Router } from '@angular/router';
-import { CardComponent } from "../shared/card/card.component";
 
 @Component({
   selector: 'app-home',
@@ -13,6 +10,7 @@ import { CardComponent } from "../shared/card/card.component";
 export class HomeComponent {
   private movieService = inject(MovieService);
   private router = inject(Router)
+  // getting movies data once App component retrieved from API call 
   movies =  this.movieService.filterdMovies;
   getImage = this.movieService.getImage;
 

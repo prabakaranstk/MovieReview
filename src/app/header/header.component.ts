@@ -12,8 +12,9 @@ export class HeaderComponent {
   title = 'MovieReview';
   
   private movieService = inject(MovieService);
+  //getting all movies details to show it movie names dropdown
   allMovies =  this.movieService.AllMovies.asReadonly();
-
+  
   onChangeSearchText(){
     this.movieService.searchMovies(this.searchText);
   }

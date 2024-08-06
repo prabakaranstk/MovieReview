@@ -46,7 +46,6 @@ describe('HeaderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [HeaderComponent],
       imports: [CommonModule, FormsModule],
       providers: [
         {provide: MovieService, useClass: mockMovieService}

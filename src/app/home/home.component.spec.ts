@@ -38,7 +38,7 @@ describe('HomeComponent', () => {
 
   beforeEach(async () => {
      await TestBed.configureTestingModule({
-      declarations: [HomeComponent, CardComponent],
+      declarations: [CardComponent],
       providers: [
         {provide: MovieService, useClass: mockMovieService}
       ]
@@ -72,11 +72,13 @@ describe('HomeComponent', () => {
     expect(cardsTitle[0].nativeElement.textContent).toBe("The Shawshank Redemption");
   });
 
-  it('should not show cards text and title on home page if data does not exist',() => {
+  it('should not show cards text and title on home page if data does not exist and show no alert',() => {
     component.movies.set([]);
     fixture.detectChanges();
     const cardsText = el.queryAll(By.css(".card-text"));   
     const cardsTitle = el.queryAll(By.css(".card-title"));
+    const alertText = el.queryAll(By.css(".alert"));
+    expect(alertText[0].nativeElement.textContent).toBe(" No movie found ");
     expect(cardsText.length).toBe(0);
     expect(cardsTitle.length).toBe(0);
   });

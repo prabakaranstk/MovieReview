@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MovieService } from '../home/movie.service';
 import { Movie } from '../home/movie.model';
-import { CardComponent } from '../shared/card/card.component';
 
 @Component({
   selector: 'app-movie-detail',
@@ -21,15 +20,13 @@ export class MovieDetailComponent {
   }
 
   ngOnInit(){
+    // extracting movie id from route
     this.movieId = this.route.snapshot.paramMap.get('id');
     this.selectedMovie = this.movieService.getMovieById(this.movieId);
   }
 
-  updateSlider(selectedIndex:number, movieId:string){
+  updateRating(selectedIndex:number, movieId:string){
     this.selectedRating = selectedIndex;
     this.movieService.updateMovieRating(selectedIndex+1,movieId);
   }
-
-  
-
 }

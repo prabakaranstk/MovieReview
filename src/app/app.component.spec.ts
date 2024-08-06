@@ -1,10 +1,11 @@
-import { TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { MovieService } from './home/movie.service';
-import { HeaderComponent } from './header/header.component';
 import { signal } from '@angular/core';
 import { Movie } from './home/movie.model';
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component } from '@angular/core';
+import { By } from '@angular/platform-browser';
+import { of} from 'rxjs';
 
 @Component({
   selector: 'router-outlet',
@@ -13,8 +14,16 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 export class MockRouteComponent {
 }
 
+@Component({
+  selector: 'app-header',
+  template: `<h1>Header</h1>`
+})
+export class HeaderComponent {}
+
 describe('AppComponent', () => {
-  const movieServiceSpy = jasmine.createSpyObj('MovieService', ['getImage']);
+  let fixture: ComponentFixture<AppComponent>;
+  let component: AppComponent;
+
   class mockMovieService {
     AllMovies = signal<Movie[] | undefined>(undefined);
     getImage(){
@@ -22,6 +31,9 @@ describe('AppComponent', () => {
     }
     getMovieById(){
       return [];
+    }
+    fetchMovies(){
+      return of([])
     }
   }
   beforeEach(async () => {
@@ -31,11 +43,23 @@ describe('AppComponent', () => {
     }).compileComponents();
   });
 
+  beforeEach(() => {
+    fixture = TestBed.createComponent(AppComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
   it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
+     fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
     expect(app).toBeTruthy();
   });
 
+  it('should render the header component', () => {
+    const headerElement = fixture.debugElement.query(By.css('app-header'));
+    expect(headerElement).toBeTruthy();
+  });
+
+  
   
 });

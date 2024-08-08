@@ -6,6 +6,7 @@ import { Movie } from './home/movie.model';
 import { Component } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { of} from 'rxjs';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'router-outlet',
@@ -39,6 +40,7 @@ describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [AppComponent, HeaderComponent, MockRouteComponent ],
+      imports: [CommonModule],
       providers: [{provide: MovieService, useClass: mockMovieService}],
     }).compileComponents();
   });

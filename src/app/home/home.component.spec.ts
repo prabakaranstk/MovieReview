@@ -6,6 +6,7 @@ import { MovieService } from './movie.service';
 import { Movie } from './movie.model';
 import {By} from '@angular/platform-browser';
 import { CardComponent } from '../shared/card/card.component';
+import { CommonModule } from '@angular/common';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -38,7 +39,8 @@ describe('HomeComponent', () => {
 
   beforeEach(async () => {
      await TestBed.configureTestingModule({
-      declarations: [CardComponent],
+      declarations: [HomeComponent, CardComponent],
+      imports: [CommonModule ],
       providers: [
         {provide: MovieService, useClass: mockMovieService}
       ]

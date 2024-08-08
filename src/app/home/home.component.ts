@@ -15,7 +15,7 @@ export class HomeComponent {
   getImage = this.movieService.getImage;
 
   navigateMoviePage(movieId:string){
-    this.router.navigate(['movie',{ id: movieId }]);
+    this.router.navigate(['movie',movieId ],{ state: { show: true } });
   }
 
 }

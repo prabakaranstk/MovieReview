@@ -15,9 +15,9 @@
             </a>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" (click)="onChooseMovieName('')">All Movies</a></li>
-               @for(movie of allMovies(); track  movie.id){
-                <li><a class="dropdown-item" [ngClass]="{'active' : movie.id == selectedId}" (click)="onChooseMovieName(movie.id)">{{movie.movie}}</a></li>
-              }
+              <li *ngFor="let movie of allMovies()">
+                <a class="dropdown-item" [ngClass]="{'active' : movie.id == selectedId}" (click)="onChooseMovieName(movie.id)">{{movie.movie}}</a>
+              </li>
             </ul>
           </li>
         </ul>

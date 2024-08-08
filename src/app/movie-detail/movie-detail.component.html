@@ -1,31 +1,29 @@
 <div class="container-fluid">
-    @if(selectedMovie){      
-    <div class="row mt-5">
-        <div class="col-md-3 offset-md-5">
-            <h5 class="card-title">{{selectedMovie.movie}}</h5>
+    <div *ngIf="selectedMovie">    
+        <div class="row mt-5">
+            <div class="col-md-3 offset-md-5">
+                <h5 class="card-title">{{selectedMovie.movie}}</h5>
+            </div>
+        </div>
+        <div class="row mt-5">             
+                <div class="col-md-3 offset-md-3">
+                    <app-card>
+                        <img card-title [src] ="getImage(selectedMovie.id)" class="card-img-top" [id]="selectedMovie.id" [alt]="selectedMovie.movie"/>               
+                        <p class="card-text">{{selectedMovie.movie}} - ({{selectedMovie.rating}}/10)</p>
+                    </app-card>  
+                </div>
+                <div class="col-md-3">             
+                    <p class="card-text"><span>IMDB Rating: </span>{{selectedMovie.rating}}/10</p>
+                    <p class="card-text"><span>Please give your Rating: </span>
+                        <ng-container *ngFor="let number of [].constructor(sliderMax); let i = index" >
+                            <span *ngIf="selectedRating >= i; else noItems" (click)="updateRating(i,selectedMovie.id)" style="cursor: pointer;">★</span>
+                            <ng-template #noItems>
+                                <span [id]="'empty-star-' + i" (click)="updateRating(i,selectedMovie.id)" style="cursor: pointer;">☆</span>
+                            </ng-template>
+                        </ng-container>
+                    </p>
+                    <p class="card-text"><span>IMDB url: </span>{{selectedMovie.imdb_url}}</p>         
+                </div>      
         </div>
     </div>
-    <div class="row mt-5">             
-            <div class="col-md-3 offset-md-3">
-                <app-card>
-                    <img card-title [src] ="getImage(selectedMovie.id)" class="card-img-top" [id]="selectedMovie.id" [alt]="selectedMovie.movie"/>               
-                    <p class="card-text">{{selectedMovie.movie}} - ({{selectedMovie.rating}}/10)</p>
-                </app-card>  
-            </div>
-            <div class="col-md-3">
-                
-                <p class="card-text"><span>IMDB Rating: </span>{{selectedMovie.rating}}/10</p>
-                <p class="card-text"><span>Please give your Rating: </span>
-                    @for(number of [].constructor(sliderMax); track $index){
-                        @if( selectedRating >= $index ){ 
-                            <span  (click)="updateRating($index,selectedMovie.id)" style="cursor: pointer;">★</span>
-                        } @else {
-                            <span [id]="'empty-star-' + $index" (click)="updateRating($index,selectedMovie.id)" style="cursor: pointer;">☆</span>
-                        }
-                    }
-                </p>
-                <p class="card-text"><span>IMDB url: </span>{{selectedMovie.imdb_url}}</p>         
-            </div>      
-    </div>
-    }
 </div>

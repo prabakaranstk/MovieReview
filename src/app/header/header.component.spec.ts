@@ -49,7 +49,8 @@ describe('HeaderComponent', () => {
       imports: [CommonModule, FormsModule],
       providers: [
         {provide: MovieService, useClass: mockMovieService}
-      ]
+      ],
+      declarations: [HeaderComponent]
     })
     .compileComponents()
     .then(() => {

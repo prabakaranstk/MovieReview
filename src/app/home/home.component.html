@@ -1,20 +1,16 @@
 <div class="container-fluid">
     <div class="row mt-5 row-cols-1 row-cols-sm-2 row-cols-md-4 row-gap-3 ">
-    @for(movie of movies(); track  movie.id)  {
-        <div class = "col">
+        <div *ngFor="let movie of movies()" class = "col">
            <app-card>
                 <img card-title [src] ="getImage(movie.id)" (click) ="navigateMoviePage(movie.id)" class="cursor-pointer card-img-top" [alt]="movie.movie"/>
                 <h5 class="card-title cursor-pointer">{{movie.movie}}</h5>
                 <p class="card-text"><span>IMDB Rating: </span>{{movie.rating}}</p>
             </app-card>
         </div>
-    }
-    @empty {
-        <div class="col-md-3 offset-md-4">
+        <div *ngIf="movies()?.length === 0" class="col-md-3 offset-md-4">
             <div class="alert alert-primary" role="alert">
             No movie found
             </div>
-        </div>
-    }
+         </div>
     </div>       
 </div>
